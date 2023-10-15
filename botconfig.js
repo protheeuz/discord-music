@@ -4,12 +4,9 @@ module.exports = {
   DefaultPrefix: process.env.Prefix || "/",
   Port: 3000,
   SupportServer: "https://discord.gg/V79BCZ9u",
-  Token:
-    process.env.Token ||
-    "MTA3MzI4OTMxOTkwMjYyOTkzOA.GefWHG.QOqpG46oM3DKt75enmxVQGS_dSxAZIU7a0jCDk",
-  ClientID: process.env.Discord_ClientID || "1073289319902629938",
-  ClientSecret:
-    process.env.Discord_ClientSecret || "UrTVe6fhUjdlm5B8nyMSkuyOewqiCbmD",
+  Token: process.env.Token || "",
+  ClientID: process.env.Discord_ClientID || "",
+  ClientSecret: process.env.Discord_ClientSecret || "",
   Scopes: ["identify", "guilds", "applications.commands"],
   ServerDeafen: true,
   DefaultVolume: 100,
@@ -38,9 +35,7 @@ module.exports = {
   },
 
   Spotify: {
-    ClientID:
-      process.env.Spotify_ClientID || "aa09c61335f34c32b35efa4bfaf1a01c",
-    ClientSecret:
-      process.env.Spotify_ClientSecret || "df54cdd62337417a83d9604fb47e6de8",
+    ClientID: process.env.Spotify_ClientID || "",
+    ClientSecret: process.env.Spotify_ClientSecret || "",
   },
 };
