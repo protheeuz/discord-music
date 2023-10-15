@@ -79,7 +79,7 @@ module.exports = {
       if (player.playing)
         return client.sendTime(interaction, "❌ | **Music udah dilajut!**");
       player.pause(false);
-      client.sendTime(interaction, "**⏯ Resumed!**");
+      client.sendTime(interaction, "**⏯ Dilanjut!**");
     },
   },
 };
