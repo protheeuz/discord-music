@@ -3,9 +3,9 @@ const { TrackUtils, Player } = require("erela.js");
 const prettyMilliseconds = require("pretty-ms");
 
 module.exports = {
-  name: "play",
-  description: "Play your favorite songs",
-  usage: "[song]",
+  name: "puter",
+  description: "Puter musik kesukaa lo!",
+  usage: "[lagu]",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
@@ -22,7 +22,7 @@ module.exports = {
     if (!message.member.voice.channel)
       return client.sendTime(
         message.channel,
-        "❌ | **You must be in a voice channel to play something!**"
+        "❌ | **Dih, lo musti ada di voice channel biar gue bisa nyetel musik**"
       );
     if (
       message.guild.me.voice.channel &&
@@ -30,20 +30,20 @@ module.exports = {
     )
       return client.sendTime(
         message.channel,
-        ":x: | **You must be in the same voice channel as me to use this command!**"
+        ":x: | **Dih, masuk kedalem voice channel yang sama dulu. Begooo banget dah!**"
       );
     let SearchString = args.join(" ");
     if (!SearchString)
       return client.sendTime(
         message.channel,
-        `**Usage - **\`${GuildDB.prefix}play [song]\``
+        `**Pengunaan - **\`${GuildDB.prefix}dimainkan [lagu]\``
       );
     let CheckNode = client.Manager.nodes.get(client.botconfig.Lavalink.id);
     let Searching = await message.channel.send(":mag_right: Searching...");
     if (!CheckNode || !CheckNode.connected) {
       return client.sendTime(
         message.channel,
-        "❌ | **Lavalink node not connected**"
+        "❌ | **Sorry, server error hehehe**"
       );
     }
     const player = client.Manager.create({
@@ -61,7 +61,7 @@ module.exports = {
     if (!player)
       return client.sendTime(
         message.channel,
-        "❌ | **Nothing is playing right now...**"
+        "❌ | **Gaada yang bisa diputer sekarang..**"
       );
 
     if (player.state != "CONNECTED") await player.connect();
@@ -84,7 +84,7 @@ module.exports = {
           )
             player.play();
           SongAddedEmbed.setAuthor(
-            `Playlist added to queue`,
+            `Playlist ditambahkan ke antrian`,
             message.author.displayAvatarURL()
           );
           SongAddedEmbed.addField(
@@ -92,7 +92,7 @@ module.exports = {
             `\`${Searched.tracks.length}\` songs`,
             false
           );
-          //SongAddedEmbed.addField("Playlist duration", `\`${prettyMilliseconds(Searched.tracks, { colonNotation: true })}\``, false)
+          //SongAddedEmbed.addField("Duresyen playlist", `\`${prettyMilliseconds(Searched.tracks, { colonNotation: true })}\``, false)
           Searching.edit(SongAddedEmbed);
         } else if (Searched.loadType.startsWith("TRACK")) {
           player.queue.add(
@@ -100,19 +100,22 @@ module.exports = {
           );
           if (!player.playing && !player.paused && !player.queue.size)
             player.play();
-          SongAddedEmbed.setAuthor(`Added to queue`, client.botconfig.IconURL);
+          SongAddedEmbed.setAuthor(
+            `Ditambahkan ke antrian`,
+            client.botconfig.IconURL
+          );
           SongAddedEmbed.setDescription(
             `[${Searched.tracks[0].info.title}](${Searched.tracks[0].info.uri})`
           );
           SongAddedEmbed.addField(
-            "Author",
+            "Penyanyi",
             Searched.tracks[0].info.author,
             true
           );
           //SongAddedEmbed.addField("Duration", `\`${prettyMilliseconds(Searched.tracks[0].length, { colonNotation: true })}\``, true);
           if (player.queue.totalSize > 1)
             SongAddedEmbed.addField(
-              "Position in queue",
+              "Posisi dalam antrian",
               `${player.queue.size - 0}`,
               true
             );
@@ -120,7 +123,7 @@ module.exports = {
         } else {
           return client.sendTime(
             message.channel,
-            "**No matches found for - **" + SearchString
+            "**Tidak cocok bjir - **" + SearchString
           );
         }
       } else {
@@ -128,7 +131,7 @@ module.exports = {
         if (!player)
           return client.sendTime(
             message.channel,
-            "❌ | **Nothing is playing right now...**"
+            "❌ | **Gaada yang bisa diputer sekarang..**"
           );
 
         if (Searched.loadType === "NO_MATCHES")
@@ -145,7 +148,7 @@ module.exports = {
           )
             player.play();
           SongAddedEmbed.setAuthor(
-            `Playlist added to queue`,
+            `Playlist ditambahin ke antrian`,
             client.botconfig.IconURL
           );
           // SongAddedEmbed.setThumbnail(Searched.tracks[0].displayThumbnail());
@@ -153,12 +156,12 @@ module.exports = {
             `[${Searched.playlist.name}](${SearchString})`
           );
           SongAddedEmbed.addField(
-            "Enqueued",
-            `\`${Searched.tracks.length}\` songs`,
+            "tidakdalamantrian",
+            `\`${Searched.tracks.length}\` lagu`,
             false
           );
           SongAddedEmbed.addField(
-            "Playlist duration",
+            "Duresyen playlist",
             `\`${prettyMilliseconds(Searched.playlist.duration, {
               colonNotation: true,
             })}\``,
@@ -169,7 +172,10 @@ module.exports = {
           player.queue.add(Searched.tracks[0]);
           if (!player.playing && !player.paused && !player.queue.size)
             player.play();
-          SongAddedEmbed.setAuthor(`Added to queue`, client.botconfig.IconURL);
+          SongAddedEmbed.setAuthor(
+            `Ditambahkan ke antrian`,
+            client.botconfig.IconURL
+          );
 
           // SongAddedEmbed.setThumbnail(Searched.tracks[0].displayThumbnail());
           SongAddedEmbed.setDescription(
@@ -177,7 +183,7 @@ module.exports = {
           );
           SongAddedEmbed.addField("Author", Searched.tracks[0].author, true);
           SongAddedEmbed.addField(
-            "Duration",
+            "Duresyen",
             `\`${prettyMilliseconds(Searched.tracks[0].duration, {
               colonNotation: true,
             })}\``,
@@ -185,7 +191,7 @@ module.exports = {
           );
           if (player.queue.totalSize > 1)
             SongAddedEmbed.addField(
-              "Position in queue",
+              "Posisi dalam antrian",
               `${player.queue.size - 0}`,
               true
             );
@@ -196,7 +202,7 @@ module.exports = {
       console.log(e);
       return client.sendTime(
         message.channel,
-        "**No matches found for - **" + SearchString
+        "**Pencaria gak cocok bjir - **" + SearchString
       );
     }
   },
@@ -208,7 +214,7 @@ module.exports = {
         value: "song",
         type: 3,
         required: true,
-        description: "Play music in the voice channel",
+        description: "Puter musik di voice channel",
       },
     ],
     /**
@@ -226,7 +232,7 @@ module.exports = {
       if (!member.voice.channel)
         return client.sendTime(
           interaction,
-          "❌ | **You must be in a voice channel to use this command.**"
+          "❌ | **Lo musti ada didalem voice channel dulu blog, biar gue bisa nyetel musiknya.**"
         );
       if (
         guild.me.voice.channel &&
@@ -234,7 +240,7 @@ module.exports = {
       )
         return client.sendTime(
           interaction,
-          ":x: | **You must be in the same voice channel as me to use this command!**"
+          ":x: | **Dih, masuk kedalem voice channel yang sama dulu. Begooo banget dah!**"
         );
       let CheckNode = client.Manager.nodes.get(client.botconfig.Lavalink.id);
       if (!CheckNode || !CheckNode.connected) {
@@ -265,14 +271,14 @@ module.exports = {
             if (!player.queue.current) player.destroy();
             return client.sendError(
               interaction,
-              `❌ | **There was an error while searching**`
+              `❌ | **Maaf, kayaknya ada masalah teknis pas nyari deh**`
             );
 
           case "NO_MATCHES":
             if (!player.queue.current) player.destroy();
             return client.sendTime(
               interaction,
-              "❌ | **No results were found.**"
+              "❌ | **Maaf, gaada hasil yang ditemuin**"
             );
           case "TRACK_LOADED":
             player.queue.add(TrackUtils.build(Searched.tracks[0], member.user));
@@ -280,7 +286,7 @@ module.exports = {
               player.play();
             let SongAddedEmbed = new MessageEmbed();
             SongAddedEmbed.setAuthor(
-              `Added to queue`,
+              `Ditambahkan ke antrian`,
               client.botconfig.IconURL
             );
             SongAddedEmbed.setColor(client.botconfig.EmbedColor);
@@ -288,13 +294,13 @@ module.exports = {
               `[${Searched.tracks[0].info.title}](${Searched.tracks[0].info.uri})`
             );
             SongAddedEmbed.addField(
-              "Author",
+              "Penyanyi",
               Searched.tracks[0].info.author,
               true
             );
             if (player.queue.totalSize > 1)
               SongAddedEmbed.addField(
-                "Position in queue",
+                "Posisi dalam antrian",
                 `${player.queue.size - 0}`,
                 true
               );
@@ -305,7 +311,10 @@ module.exports = {
             if (!player.playing && !player.paused && !player.queue.length)
               player.play();
             let SongAdded = new MessageEmbed();
-            SongAdded.setAuthor(`Added to queue`, client.botconfig.IconURL);
+            SongAdded.setAuthor(
+              `Ditambahkan ke antrian`,
+              client.botconfig.IconURL
+            );
             SongAdded.setColor(client.botconfig.EmbedColor);
             SongAdded.setDescription(
               `[${Searched.tracks[0].info.title}](${Searched.tracks[0].info.uri})`
@@ -313,7 +322,7 @@ module.exports = {
             SongAdded.addField("Author", Searched.tracks[0].info.author, true);
             if (player.queue.totalSize > 1)
               SongAdded.addField(
-                "Position in queue",
+                "Posisi di antrian",
                 `${player.queue.size - 0}`,
                 true
               );
@@ -332,15 +341,15 @@ module.exports = {
               player.play();
             let Playlist = new MessageEmbed();
             Playlist.setAuthor(
-              `Playlist added to queue`,
+              `Playlist Ditambahkan ke antrian`,
               client.botconfig.IconURL
             );
             Playlist.setDescription(
               `[${Searched.playlistInfo.name}](${interaction.data.options[0].value})`
             );
             Playlist.addField(
-              "Enqueued",
-              `\`${Searched.tracks.length}\` songs`,
+              "tidakdalamantrian",
+              `\`${Searched.tracks.length}\` lagu`,
               false
             );
             return interaction.send(Playlist);
@@ -352,13 +361,13 @@ module.exports = {
             if (!player.queue.current) player.destroy();
             return client.sendError(
               interaction,
-              `:x: | **There was an error while searching**`
+              `:x: | **Maaf, kayaknya ada masalah teknis pas nyari deh**`
             );
           }
         } catch (err) {
           return client.sendError(
             interaction,
-            `There was an error while searching: ${err.message}`
+            `Maaf, kayaknya ada masalah teknis pas nyari deh: ${err.message}`
           );
         }
         switch (res.loadType) {
@@ -366,7 +375,7 @@ module.exports = {
             if (!player.queue.current) player.destroy();
             return client.sendTime(
               interaction,
-              "❌ | **No results were found.**"
+              "❌ | **Maaf, gaada hasil yang ditemuin**"
             );
           case "TRACK_LOADED":
             player.queue.add(res.tracks[0]);
@@ -374,7 +383,7 @@ module.exports = {
               player.play();
             let SongAddedEmbed = new MessageEmbed();
             SongAddedEmbed.setAuthor(
-              `Added to queue`,
+              `Ditambahkan ke antrian`,
               client.botconfig.IconURL
             );
             //SongAddedEmbed.setThumbnail(res.tracks[0].displayThumbnail());
@@ -398,12 +407,12 @@ module.exports = {
               );
             return interaction.send(SongAddedEmbed);
 
-           case "PLAYLIST_LOADED":
+          case "PLAYLIST_LOADED":
             player.queue.add(res.tracks);
             await player.play();
             let SongAdded = new MessageEmbed();
             SongAdded.setAuthor(
-              `Playlist added to queue`,
+              `Playlist Ditambahkan ke antrian`,
               client.botconfig.IconURL
             );
             //SongAdded.setThumbnail(res.tracks[0].displayThumbnail());
@@ -411,12 +420,12 @@ module.exports = {
               `[${res.playlist.name}](${interaction.data.options[0].value})`
             );
             SongAdded.addField(
-              "Enqueued",
-              `\`${res.tracks.length}\` songs`,
+              "tidakdalamantrian",
+              `\`${res.tracks.length}\` lagu`,
               false
             );
             SongAdded.addField(
-              "Playlist duration",
+              "Duresyen playlist",
               `\`${prettyMilliseconds(res.playlist.duration, {
                 colonNotation: true,
               })}\``,
@@ -430,7 +439,7 @@ module.exports = {
             if (!player.playing && !player.paused && !player.queue.length) {
               let SongAddedEmbed = new MessageEmbed();
               SongAddedEmbed.setAuthor(
-                `Added to queue`,
+                `Ditambahkan ke antrian`,
                 client.botconfig.IconURL
               );
               SongAddedEmbed.setThumbnail(track.displayThumbnail());
@@ -446,7 +455,7 @@ module.exports = {
               );
               if (player.queue.totalSize > 1)
                 SongAddedEmbed.addField(
-                  "Position in queue",
+                  "Posisi dalam antria",
                   `${player.queue.size - 0}`,
                   true
                 );
@@ -455,7 +464,7 @@ module.exports = {
             } else {
               let SongAddedEmbed = new MessageEmbed();
               SongAddedEmbed.setAuthor(
-                `Added to queue`,
+                `Ditambahkan ke antrian`,
                 client.botconfig.IconURL
               );
               SongAddedEmbed.setThumbnail(track.displayThumbnail());
@@ -463,7 +472,7 @@ module.exports = {
               SongAddedEmbed.setDescription(`[${track.title}](${track.uri})`);
               SongAddedEmbed.addField("Author", track.author, true);
               SongAddedEmbed.addField(
-                "Duration",
+                "Duresyen",
                 `\`${prettyMilliseconds(track.duration, {
                   colonNotation: true,
                 })}\``,
@@ -471,7 +480,7 @@ module.exports = {
               );
               if (player.queue.totalSize > 1)
                 SongAddedEmbed.addField(
-                  "Position in queue",
+                  "Posisi di antrian",
                   `${player.queue.size - 0}`,
                   true
                 );

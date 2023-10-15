@@ -133,11 +133,7 @@ class DiscordMusicBot extends Client {
     );
 
     this.Manager = new Manager({
-      plugins: [
-        new deezer(),
-        new apple(),
-        new facebook(),
-      ],
+      plugins: [new deezer(), new apple(), new facebook()],
       nodes: [
         {
           identifier: this.botconfig.Lavalink.id,
@@ -163,12 +159,12 @@ class DiscordMusicBot extends Client {
       .on("trackStart", async (player, track) => {
         this.SongsPlayed++;
         let TrackStartedEmbed = new MessageEmbed()
-          .setAuthor(`Now playing ♪`, this.botconfig.IconURL)
+          .setAuthor(`Lagi diputer ♪`, this.botconfig.IconURL)
           .setThumbnail(player.queue.current.displayThumbnail())
           .setDescription(`[${track.title}](${track.uri})`)
-          .addField("Requested by", `${track.requester}`, true)
+          .addField("Rekwes dari", `${track.requester}`, true)
           .addField(
-            "Duration",
+            "Duresyen",
             `\`${prettyMilliseconds(track.duration, {
               colonNotation: true,
             })}\``,
@@ -183,7 +179,7 @@ class DiscordMusicBot extends Client {
       })
       .on("queueEnd", (player) => {
         let QueueEmbed = new MessageEmbed()
-          .setAuthor("The queue has ended", this.botconfig.IconURL)
+          .setAuthor("Antrian udah abis", this.botconfig.IconURL)
           .setColor(this.botconfig.EmbedColor)
           .setTimestamp();
         client.channels.cache.get(player.textChannel).send(QueueEmbed);
@@ -200,12 +196,12 @@ class DiscordMusicBot extends Client {
           let cmd = require(CommandsDir + "/" + file);
           if (!cmd.name || !cmd.description || !cmd.run)
             return this.log(
-              "Unable to load Command: " +
+              "Kagak bisa load command: " +
                 file.split(".")[0] +
-                ", Reason: File doesn't had run/name/desciption"
+                ", Alesan: Ya kayaknya file kagak bisa dijalanin"
             );
           this.commands.set(file.split(".")[0].toLowerCase(), cmd);
-          this.log("Command Loaded: " + file.split(".")[0]);
+          this.log("Command diproses: " + file.split(".")[0]);
         });
     });
   }
@@ -218,7 +214,7 @@ class DiscordMusicBot extends Client {
         files.forEach((file) => {
           const event = require(EventsDir + "/" + file);
           this.on(file.split(".")[0], event.bind(null, this));
-          this.logger.log("Event Loaded: " + file.split(".")[0]);
+          this.logger.log("Event diproses: " + file.split(".")[0]);
         });
     });
   }
@@ -241,9 +237,7 @@ class DiscordMusicBot extends Client {
       .setTitle("An error occured")
       .setColor("RED")
       .setDescription(Error)
-      .setFooter(
-        "If you think this as a bug, please report it in the support server!"
-      );
+      .setFooter("Kalo lo pikir ini adalah bug, lo bisa laporin ke Iqbal!");
 
     Channel.send(embed);
   }

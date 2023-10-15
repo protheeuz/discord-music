@@ -22,12 +22,12 @@ module.exports = {
     if (!player)
       return client.sendTime(
         message.channel,
-        "❌ | **Nothing is playing right now...**"
+        "❌ | **Gaada yang bisa diputer sekarang..**"
       );
     if (!message.member.voice.channel)
       return client.sendTime(
         message.channel,
-        "❌ | **You must be in a voice channel to use this command!**"
+        "❌ | **Lo musti ada didalem voice channel dulu blog biar gue bisa nyetel musiknya!**"
       );
     if (
       message.guild.me.voice.channel &&
@@ -35,7 +35,7 @@ module.exports = {
     )
       return client.sendTime(
         message.channel,
-        ":x: | **You must be in the same voice channel as me to use this command!**"
+        ":x: | **Dih, masuk kedalem voice channel yang sama dulu. Begooo banget dah!**"
       );
     player.stop();
     await message.react("✅");
@@ -55,7 +55,7 @@ module.exports = {
       if (!member.voice.channel)
         return client.sendTime(
           interaction,
-          "❌ | **You must be in a voice channel to use this command.**"
+          "❌ | **Lo musti ada didalem voice channel dulu blog, biar gue bisa nyetel musiknya.**"
         );
       if (
         guild.me.voice.channel &&
@@ -63,7 +63,7 @@ module.exports = {
       )
         return client.sendTime(
           interaction,
-          ":x: | **You must be in the same voice channel as me to use this command!**"
+          ":x: | **Dih, masuk kedalem voice channel yang sama dulu. Begooo banget dah!**"
         );
 
       const skipTo = interaction.data.options
@@ -75,7 +75,7 @@ module.exports = {
       if (!player)
         return client.sendTime(
           interaction,
-          "❌ | **Nothing is playing right now...**"
+          "❌ | **Gaada yang bisa diputer sekarang..**"
         );
       console.log(interaction.data);
       if (

@@ -28,12 +28,12 @@ module.exports = {
     if (!player)
       return client.sendTime(
         message.channel,
-        "❌ | **Nothing is playing right now...**"
+        "❌ | **Gaada yang bisa diputer sekarang..**"
       );
     if (!message.member.voice.channel)
       return client.sendTime(
         message.channel,
-        "❌ | **You must be in a voice channel to use this command!**"
+        "❌ | **Lo musti ada didalem voice channel dulu blog biar gue bisa nyetel musiknya!**"
       );
     if (
       message.guild.me.voice.channel &&
@@ -41,7 +41,7 @@ module.exports = {
     )
       return client.sendTime(
         message.channel,
-        ":x: | **You must be in the same voice channel as me to use this command!**"
+        ":x: | **Dih, masuk kedalem voice channel yang sama dulu. Begooo banget dah!**"
       );
 
     try {
@@ -95,7 +95,7 @@ module.exports = {
       if (!member.voice.channel)
         return client.sendTime(
           interaction,
-          "❌ | **You must be in a voice channel to use this command.**"
+          "❌ | **Lo musti ada didalem voice channel dulu blog, biar gue bisa nyetel musiknya.**"
         );
       if (
         guild.me.voice.channel &&
@@ -103,7 +103,7 @@ module.exports = {
       )
         return client.sendTime(
           interaction,
-          `:x: | **You must be in the same voice channel as me to use this command!**`
+          `:x: | **Dih, masuk kedalem voice channel yang sama dulu. Begooo banget dah!**`
         );
       let CheckNode = client.Manager.nodes.get(client.botconfig.Lavalink.id);
       if (!CheckNode || !CheckNode.connected) {

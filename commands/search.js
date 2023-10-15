@@ -23,7 +23,7 @@ module.exports = {
     if (!message.member.voice.channel)
       return client.sendTime(
         message.channel,
-        "❌ | **You must be in a voice channel to play something!**"
+        "❌ | **Dih, lo musti ada di voice channel biar gue bisa nyetel musik**"
       );
     if (
       message.guild.me.voice.channel &&
@@ -31,7 +31,7 @@ module.exports = {
     )
       return client.sendTime(
         message.channel,
-        ":x: | **You must be in the same voice channel as me to use this command!**"
+        ":x: | **Dih, masuk kedalem voice channel yang sama dulu. Begooo banget dah!**"
       );
 
     let SearchString = args.join(" ");
@@ -131,7 +131,10 @@ module.exports = {
       if (!player.playing && !player.paused && !player.queue.size)
         player.play();
       let SongAddedEmbed = new MessageEmbed();
-      SongAddedEmbed.setAuthor(`Added to queue`, client.botconfig.IconURL);
+      SongAddedEmbed.setAuthor(
+        `Ditambahkan ke antrian`,
+        client.botconfig.IconURL
+      );
       SongAddedEmbed.setThumbnail(Song.displayThumbnail());
       SongAddedEmbed.setColor(client.botconfig.EmbedColor);
       SongAddedEmbed.setDescription(`[${Song.title}](${Song.uri})`);
@@ -178,7 +181,7 @@ module.exports = {
       if (!member.voice.channel)
         return client.sendTime(
           interaction,
-          "❌ | **You must be in a voice channel to use this command.**"
+          "❌ | **Lo musti ada didalem voice channel dulu blog, biar gue bisa nyetel musiknya.**"
         );
       if (
         guild.me.voice.channel &&
@@ -186,7 +189,7 @@ module.exports = {
       )
         return client.sendTime(
           interaction,
-          ":x: | **You must be in the same voice channel as me to use this command!**"
+          ":x: | **Dih, masuk kedalem voice channel yang sama dulu. Begooo banget dah!**"
         );
       let CheckNode = client.Manager.nodes.get(client.botconfig.Lavalink.id);
       if (!CheckNode || !CheckNode.connected) {
@@ -216,7 +219,7 @@ module.exports = {
             if (!player.queue.current) player.destroy();
             return client.sendError(
               interaction,
-              `:x: | **There was an error while searching**`
+              `:x: | **Maaf, kayaknya ada masalah teknis pas nyari deh**`
             );
 
           case "NO_MATCHES":
@@ -231,7 +234,7 @@ module.exports = {
               player.play();
             return client.sendTime(
               interaction,
-              `**Added to queue:** \`[${Searched.tracks[0].info.title}](${Searched.tracks[0].info.uri}}\`.`
+              `**Ditambahkan ke antrian:** \`[${Searched.tracks[0].info.title}](${Searched.tracks[0].info.uri}}\`.`
             );
 
           case "PLAYLIST_LOADED":
@@ -248,7 +251,7 @@ module.exports = {
               player.play();
             return client.sendTime(
               interaction,
-              `**Playlist added to queue**: \n**${Searched.playlist.name}** \nEnqueued: **${Searched.playlistInfo.length} songs**`
+              `**Playlist Ditambahkan ke antrian**: \n**${Searched.playlist.name}** \nEnqueued: **${Searched.playlistInfo.length} songs**`
             );
         }
       } else {
@@ -261,7 +264,7 @@ module.exports = {
         } catch (err) {
           return client.sendTime(
             interaction,
-            `:x: | **There was an error while searching:** ${err.message}`
+            `:x: | **Maaf, kayaknya ada masalah teknis pas nyari deh:** ${err.message}`
           );
         }
         switch (res.loadType) {
@@ -277,7 +280,7 @@ module.exports = {
               player.play();
             return client.sendTime(
               interaction,
-              `**Added to queue:** \`[${res.tracks[0].title}](${res.tracks[0].uri})\`.`
+              `**Ditambahkan ke antrian:** \`[${res.tracks[0].title}](${res.tracks[0].uri})\`.`
             );
           case "PLAYLIST_LOADED":
             player.queue.add(res.tracks);
@@ -290,7 +293,7 @@ module.exports = {
               player.play();
             return client.sendTime(
               interaction,
-              `**Playlist added to queue**: \n**${res.playlist.name}** \nEnqueued: **${res.playlistInfo.length} songs**`
+              `**Playlist Ditambahkan ke antrian**: \n**${res.playlist.name}** \nEnqueued: **${res.playlistInfo.length} songs**`
             );
           case "SEARCH_RESULT":
             let max = 10,
@@ -355,7 +358,7 @@ module.exports = {
             } else {
               let SongAddedEmbed = new MessageEmbed();
               SongAddedEmbed.setAuthor(
-                `Added to queue`,
+                `Ditambahkan ke antrian`,
                 client.botconfig.IconURL
               );
               SongAddedEmbed.setThumbnail(track.displayThumbnail());

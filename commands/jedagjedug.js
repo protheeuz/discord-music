@@ -1,15 +1,15 @@
 const { MessageEmbed } = require("discord.js");
 const { TrackUtils } = require("erela.js");
 const levels = {
-  none: 0.0,
-  low: 0.2,
-  medium: 0.3,
-  high: 0.35,
+  gaada: 0.0,
+  kecil: 0.2,
+  lumayan: 0.3,
+  kenceng: 0.35,
 };
 module.exports = {
-  name: "bassboost",
-  description: "Enables bass boosting audio effect",
-  usage: "<none|low|medium|high>",
+  name: "jedagjedug",
+  description: "Aktifkan jedagjedug dimusik lo.",
+  usage: "<gaada|kecil|lumayan|kenceng>",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
@@ -27,12 +27,12 @@ module.exports = {
     if (!player)
       return client.sendTime(
         message.channel,
-        "❌ | **Nothing is playing right now...**"
+        "❌ | **Gaada yang bisa diputer sekarang..**"
       );
     if (!message.member.voice.channel)
       return client.sendTime(
         message.channel,
-        "❌ | **You must be in a voice channel to use this command!**"
+        "❌ | **Lo musti ada didalem voice channel dulu blog biar gue bisa nyetel musiknya!**"
       );
     if (
       message.guild.me.voice.channel &&
@@ -40,16 +40,16 @@ module.exports = {
     )
       return client.sendTime(
         message.channel,
-        ":x: | **You must be in the same voice channel as me to use this command!**"
+        ":x: | **Dih, masuk kedalem voice channel yang sama dulu. Begooo banget dah!**"
       );
 
     if (!args[0])
       return client.sendTime(
         message.channel,
-        "**Please provide a bassboost level. \nAvailable Levels:** `none`, `low`, `medium`, `high`"
+        "**Pilih level jedag-jedug-nya. \nLevel yang tersedia:** `gaada`, `kecil`, `lumayan`, `kenceng`"
       ); //if the user do not provide args [arguments]
 
-    let level = "none";
+    let level = "gaada";
     if (args.length && args[0].toLowerCase() in levels)
       level = args[0].toLowerCase();
 
@@ -61,14 +61,14 @@ module.exports = {
 
     return client.sendTime(
       message.channel,
-      `✅ | **Bassboost level set to** \`${level}\``
+      `✅ | **Jedag-jeduh disetting ke** \`${level}\``
     );
   },
   SlashCommand: {
     options: [
       {
         name: "level",
-        description: `Please provide a bassboost level. Available Levels: low, medium, high, or none`,
+        description: `Pilih level jedag-jedug-nya. Level yang tersedia: gaada, kecil, lumayan, or kenceng`,
         value: "[level]",
         type: 3,
         required: true,
@@ -84,10 +84,10 @@ module.exports = {
 
     run: async (client, interaction, args, { GuildDB }) => {
       const levels = {
-        none: 0.0,
+        gaada: 0.0,
         low: 0.2,
-        medium: 0.3,
-        high: 0.35,
+        lumayan: 0.3,
+        kenceng: 0.35,
       };
 
       let player = await client.Manager.get(interaction.guild_id);
@@ -97,12 +97,12 @@ module.exports = {
       if (!player)
         return client.sendTime(
           interaction,
-          "❌ | **Nothing is playing right now...**"
+          "❌ | **Gaada yang bisa diputer sekarang..**"
         );
       if (!member.voice.channel)
         return client.sendTime(
           interaction,
-          "❌ | **You must be in a voice channel to use this command.**"
+          "❌ | **Lo musti ada didalem voice channel dulu blog, biar gue bisa nyetel musiknya.**"
         );
       if (
         guild.me.voice.channel &&
@@ -110,15 +110,15 @@ module.exports = {
       )
         return client.sendTime(
           interaction,
-          ":x: | **You must be in the same voice channel as me to use this command!**"
+          ":x: | **Dih, masuk kedalem voice channel yang sama dulu. Begooo banget dah!**"
         );
       if (!args)
         return client.sendTime(
           interaction,
-          "**Please provide a bassboost level. \nAvailable Levels:** `none`, `low`, `medium`, `high`"
+          "**Pilih level jedag-jedug-nya. \nLevel yang tersedia:** `gaada`, `kecil`, `lumayan`, `kenceng`"
         ); //if the user do not provide args [arguments]
 
-      let level = "none";
+      let level = "gaada";
       if (args.length && args[0].value in levels) level = args[0].value;
 
       player.setEQ(
@@ -129,7 +129,7 @@ module.exports = {
 
       return client.sendTime(
         interaction,
-        `✅ | **Set the bassboost level to** \`${level}\``
+        `✅ | **Atur jedag-jeduhnya ke** \`${level}\``
       );
     },
   },

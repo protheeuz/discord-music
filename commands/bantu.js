@@ -1,8 +1,8 @@
 const { MessageEmbed } = require("discord.js");
 
 module.exports = {
-  name: "help",
-  description: "Information about the bot",
+  name: "bantu",
+  description: "Informasi tentang gue",
   usage: "[command]",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
@@ -39,7 +39,9 @@ module.exports = {
   Discord Music Bot Version: v${require("../package.json").version}
   [✨ Support Server](${
     client.botconfig.SupportServer
-  }) | [GitHub](https://github.com/SudhanPlayz/Discord-MusicBot) | [Dashboard](${client.botconfig.Website}) | By [SudhanPlayz](https://github.com/SudhanPlayz)`);
+  }) | [GitHub](https://github.com/protheeuz/discord-music) | [Dashboard](${
+      client.botconfig.Website
+    }) | By [Protheeuz](https://github.com/protheeuz/)`);
     if (!args[0]) message.channel.send(Embed);
     else {
       let cmd =
@@ -48,7 +50,7 @@ module.exports = {
       if (!cmd)
         return client.sendTime(
           message.channel,
-          `❌ | Unable to find that command.`
+          `❌ | Gaada command yang lo cari blog`
         );
 
       let embed = new MessageEmbed()
@@ -110,12 +112,12 @@ module.exports = {
 
       let Embed = new MessageEmbed()
         .setAuthor(
-          `Commands of ${client.user.username}`,
+          `Commands dari ${client.user.username}`,
           client.botconfig.IconURL
         )
         .setColor(client.botconfig.EmbedColor)
         .setFooter(
-          `To get info of each command type ${
+          `Untuk mencari tau info command ${
             GuildDB ? GuildDB.prefix : client.botconfig.DefaultPrefix
           }help [Command] | Have a nice day!`
         ).setDescription(`${Commands.join("\n")}
@@ -123,7 +125,9 @@ module.exports = {
   Discord Music Bot Version: v${require("../package.json").version}
   [✨ Support Server](${
     client.botconfig.SupportServer
-  }) | [GitHub](https://github.com/SudhanPlayz/Discord-MusicBot) | [Dashboard](${client.botconfig.Website}) | By [SudhanPlayz](https://github.com/SudhanPlayz)`);
+  }) | [GitHub](https://github.com/protheeuz/discord-music) | [Dashboard](${
+        client.botconfig.Website
+      }) | By [SudhanPlayz](https://github.com/protheeuz/)`);
       if (!args) return interaction.send(Embed);
       else {
         let cmd =
@@ -134,7 +138,7 @@ module.exports = {
         if (!cmd)
           return client.sendTime(
             interaction,
-            `❌ | Unable to find that command.`
+            `❌ | Gaada command yang lo cari blog`
           );
 
         let embed = new MessageEmbed()

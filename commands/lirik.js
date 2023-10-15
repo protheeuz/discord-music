@@ -4,8 +4,8 @@ const lyricsFinder = require("lyrics-finder");
 const _ = require("lodash");
 
 module.exports = {
-  name: "lyrics",
-  description: "Shows the lyrics of the song searched",
+  name: "lirik",
+  description: "Tampilkan lirik dari lagu yang dicari",
   usage: "[Song Name]",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
@@ -26,7 +26,7 @@ module.exports = {
     if (!args[0] && !player)
       return client.sendTime(
         message.channel,
-        "❌ | **Nothing is playing right now...**"
+        "❌ | **Gaada yang bisa diputer sekarang..**"
       );
     if (!args[0]) SongTitle = player.queue.current.title;
     SongTitle = SongTitle.replace(
@@ -38,14 +38,14 @@ module.exports = {
     if (!lyrics)
       return client.sendTime(
         message.channel,
-        `**No lyrics found for -** \`${SongTitle}\``
+        `**Lirik yang dicari gaada -** \`${SongTitle}\``
       );
     lyrics = lyrics.split("\n"); //spliting into lines
     let SplitedLyrics = _.chunk(lyrics, 40); //45 lines each page
 
     let Pages = SplitedLyrics.map((ly) => {
       let em = new MessageEmbed()
-        .setAuthor(`Lyrics for: ${SongTitle}`, client.botconfig.IconURL)
+        .setAuthor(`Lirik buat: ${SongTitle}`, client.botconfig.IconURL)
         .setColor(client.botconfig.EmbedColor)
         .setDescription(ly.join("\n"));
 
@@ -66,7 +66,7 @@ module.exports = {
         name: "song",
         value: "song",
         type: 3,
-        description: "Enter a song name to search",
+        description: "Masukin judul lagunya ",
         required: false,
       },
     ],
@@ -84,7 +84,7 @@ module.exports = {
       if (!interaction.data.options && !player)
         return client.sendTime(
           interaction,
-          "❌ | **Nothing is playing right now...**"
+          "❌ | **Gaada yang bisa diputer sekarang..**"
         );
 
       SongTitle = interaction.data.options
@@ -95,14 +95,14 @@ module.exports = {
       if (lyrics.length === 0)
         return client.sendTime(
           interaction,
-          `**No lyrics found for -** \`${SongTitle}\``
+          `**Gaada lirik untuk -** \`${SongTitle}\``
         );
       lyrics = lyrics.split("\n"); //spliting into lines
       let SplitedLyrics = _.chunk(lyrics, 40); //45 lines each page
 
       let Pages = SplitedLyrics.map((ly) => {
         let em = new MessageEmbed()
-          .setAuthor(`Lyrics for: ${SongTitle}`, client.botconfig.IconURL)
+          .setAuthor(`Lirik untuk: ${SongTitle}`, client.botconfig.IconURL)
           .setColor(client.botconfig.EmbedColor)
           .setDescription(ly.join("\n"));
 

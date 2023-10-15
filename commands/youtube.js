@@ -20,7 +20,7 @@ module.exports = {
     if (!message.member.voice.channel)
       return client.sendTime(
         message.channel,
-        "❌ | **You must be in a voice channel to play something!**"
+        "❌ | **Dih, lo musti ada di voice channel biar gue bisa nyetel musik**"
       );
     if (
       !message.member.voice.channel
@@ -65,7 +65,7 @@ __**[Join YouTube Together](https://discord.com/invite/${Invite.code})**__
       if (!member.voice.channel)
         return client.sendTime(
           interaction,
-          "❌ | You must be in a voice channel to use this command."
+          "❌ | Lo musti ada didalem voice channel dulu blog, biar gue bisa nyetel musiknya."
         );
       if (
         !member.voice.channel
