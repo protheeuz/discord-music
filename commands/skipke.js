@@ -2,8 +2,8 @@ const { MessageEmbed } = require("discord.js");
 const { TrackUtils, Player } = require("erela.js");
 
 module.exports = {
-  name: "skipto",
-  description: `Skip to a song in the queue`,
+  name: "skipke",
+  description: `Lewati ke lagu dalam antrean`,
   usage: "<number>",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
@@ -48,13 +48,13 @@ module.exports = {
       if (!args[0])
         return client.sendTime(
           message.channel,
-          `**Usage**: \`${GuildDB.prefix}skipto [number]\``
+          `**Penggunaan**: \`${GuildDB.prefix}skipke [number]\``
         );
       //if the wished track is bigger then the Queue Size
       if (Number(args[0]) > player.queue.size)
         return client.sendTime(
           message.channel,
-          `❌ | That song is not in the queue! Please try again!`
+          `❌ | Tolol ih, Lagu itu tidak ada dalam antrian! Silakan coba lagi!`
         );
       //remove all tracks to the jumped song
       player.queue.remove(0, Number(args[0]) - 1);
@@ -67,17 +67,17 @@ module.exports = {
       );
     } catch (e) {
       console.log(String(e.stack).bgRed);
-      client.sendError(message.channel, "Something went wrong.");
+      client.sendError(message.channel, "Ada yang salah, nih..");
     }
   },
   SlashCommand: {
     options: [
       {
-        name: "position",
+        name: "posisi",
         value: "[position]",
         type: 4,
         required: true,
-        description: "Skips to a specific song in the queue",
+        description: "Melewati ke lagu tertentu dalam antrean",
       },
     ],
     /**
@@ -109,7 +109,7 @@ module.exports = {
       if (!CheckNode || !CheckNode.connected) {
         return client.sendTime(
           interaction,
-          "❌ | **Lavalink node not connected**"
+          "❌ | **Sori, server gangguan bro**"
         );
       }
 
@@ -124,7 +124,7 @@ module.exports = {
         if (!interaction.data.options)
           return client.sendTime(
             interaction,
-            `**Usage**: \`${GuildDB.prefix}skipto <number>\``
+            `**Penggunaan**: \`${GuildDB.prefix}skipke <number>\``
           );
         let skipTo = interaction.data.options[0].value;
         //if the wished track is bigger then the Queue Size
@@ -134,18 +134,18 @@ module.exports = {
         )
           return client.sendTime(
             interaction,
-            `❌ | That song is not in the queue! Please try again!`
+            `❌ | Tolol ih, Lagu itu tidak ada dalam antrian! Silakan coba lagi!`
           );
 
         player.stop(skipTo);
         //Send Success Message
         return client.sendTime(
           interaction,
-          `⏭ Skipped \`${Number(skipTo)}\` songs`
+          `⏭ Diskip \`${Number(skipTo)}\` lagu`
         );
       } catch (e) {
         console.log(String(e.stack).bgRed);
-        client.sendError(interaction, "Something went wrong.");
+        client.sendError(interaction, "Ada yang salah, nih...");
       }
     },
   },

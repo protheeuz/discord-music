@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: "youtube",
-  description: "Starts a YouTube Together session",
+  description: "Memulai sesi YouTube Bersama",
   usage: "",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
@@ -29,7 +29,7 @@ module.exports = {
     )
       return client.sendTime(
         message.channel,
-        "❌ | **Bot doesn't have Create Invite Permission**"
+        "❌ | **Gue nggk tidak memiliki Izin Buat Undangan**"
       );
 
     let Invite = await message.member.voice.channel.activityInvite(
@@ -37,11 +37,11 @@ module.exports = {
     ); //Made using discordjs-activity package
     let embed = new MessageEmbed()
       .setAuthor(
-        "YouTube Together",
+        "YouTube Bersama",
         "https://cdn.discordapp.com/emojis/749289646097432667.png?v=1"
       )
       .setColor("#FF0000").setDescription(`
-Using **YouTube Together** you can watch YouTube with your friends in a Voice Channel. Click *Join YouTube Together* to join in!
+      Dengan menggunakan **YouTube Together** Anda dapat menonton YouTube bersama teman-teman di Saluran Suara. Klik *Gabung YouTube Bersama* untuk bergabung!
 
 __**[Join YouTube Together](https://discord.com/invite/${Invite.code})**__
 
@@ -74,7 +74,7 @@ __**[Join YouTube Together](https://discord.com/invite/${Invite.code})**__
       )
         return client.sendTime(
           interaction,
-          "❌ | **Bot doesn't have Create Invite Permission**"
+          "❌ | **Gue nggk tidak memiliki Izin Buat Undangan**"
         );
 
       let Invite = await member.voice.channel.activityInvite(
@@ -86,7 +86,7 @@ __**[Join YouTube Together](https://discord.com/invite/${Invite.code})**__
           "https://cdn.discordapp.com/emojis/749289646097432667.png?v=1"
         )
         .setColor("#FF0000").setDescription(`
-Using **YouTube Together** you can watch YouTube with your friends in a Voice Channel. Click *Join YouTube Together* to join in!
+        Dengan menggunakan **YouTube Together** Anda dapat menonton YouTube bersama teman-teman di Saluran Suara. Klik *Gabung YouTube Bersama* untuk bergabung!
 
 __**[Join YouTube Together](https://discord.com/invite/${Invite.code})**__
 

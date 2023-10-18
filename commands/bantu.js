@@ -26,17 +26,17 @@ module.exports = {
 
     let Embed = new MessageEmbed()
       .setAuthor(
-        `Commands of ${client.user.username}`,
+        `Perintah dari puh ${client.user.username}`,
         client.botconfig.IconURL
       )
       .setColor(client.botconfig.EmbedColor)
       .setFooter(
-        `To get info of each command type ${
+        `Untuk mendapatkan info setiap jenis perintah ${
           GuildDB ? GuildDB.prefix : client.botconfig.DefaultPrefix
-        }help [Command] | Have a nice day!`
+        }help [Command] | Semoga harimu senin terus!`
       ).setDescription(`${Commands.join("\n")}
   
-  Discord Music Bot Version: v${require("../package.json").version}
+      Versi Bot Musik Discord: v${require("../package.json").version}
   [✨ Support Server](${
     client.botconfig.SupportServer
   }) | [GitHub](https://github.com/protheeuz/discord-music) | [Dashboard](${
@@ -60,7 +60,7 @@ module.exports = {
         //.addField("Name", cmd.name, true)
         .addField("Aliases", `\`${cmd.aliases.join(", ")}\``, true)
         .addField(
-          "Usage",
+          "Penggunaan",
           `\`${GuildDB ? GuildDB.prefix : client.botconfig.DefaultPrefix}${
             cmd.name
           }${cmd.usage ? " " + cmd.usage : ""}\``,
@@ -88,7 +88,7 @@ module.exports = {
     options: [
       {
         name: "command",
-        description: "Get information on a specific command",
+        description: "Dapatkan informasi tentang perintah tertentu",
         value: "command",
         type: 3,
         required: false,
@@ -122,7 +122,7 @@ module.exports = {
           }help [Command] | Have a nice day!`
         ).setDescription(`${Commands.join("\n")}
   
-  Discord Music Bot Version: v${require("../package.json").version}
+        Versi Bot Musik Discord: v${require("../package.json").version}
   [✨ Support Server](${
     client.botconfig.SupportServer
   }) | [GitHub](https://github.com/protheeuz/discord-music) | [Dashboard](${
@@ -148,7 +148,7 @@ module.exports = {
           //.addField("Name", cmd.name, true)
           .addField("Aliases", cmd.aliases.join(", "), true)
           .addField(
-            "Usage",
+            "Penggunaan",
             `\`${GuildDB ? GuildDB.prefix : client.botconfig.DefaultPrefix}${
               cmd.name
             }\`${cmd.usage ? " " + cmd.usage : ""}`,
@@ -163,7 +163,7 @@ module.exports = {
             true
           )
           .setFooter(
-            `Prefix - ${
+            `Awalan - ${
               GuildDB ? GuildDB.prefix : client.botconfig.DefaultPrefix
             }`
           );

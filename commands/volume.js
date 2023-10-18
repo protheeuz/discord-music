@@ -3,7 +3,7 @@ const { TrackUtils } = require("erela.js");
 
 module.exports = {
   name: "volume",
-  description: "Check or change the current volume",
+  description: "Periksa atau ubah volume saat ini",
   usage: "<volume>",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
@@ -27,7 +27,7 @@ module.exports = {
     if (!args[0])
       return client.sendTime(
         message.channel,
-        `🔉 | Current volume \`${player.volume}\`.`
+        `🔉 | Volume sekarang \`${player.volume}\`.`
       );
     if (!message.member.voice.channel)
       return client.sendTime(
@@ -45,19 +45,19 @@ module.exports = {
     if (!parseInt(args[0]))
       return client.sendTime(
         message.channel,
-        `**Please choose a number between** \`1 - 100\``
+        `**Tolonglah pilih antara** \`1 - 100\``
       );
     let vol = parseInt(args[0]);
     if (vol < 0 || vol > 100) {
       return client.sendTime(
         message.channel,
-        "❌ | **Please Choose A Number Between `1-100`**"
+        "❌ | **Tolonglah pilih antara `1-100`**"
       );
     } else {
       player.setVolume(vol);
       client.sendTime(
         message.channel,
-        `🔉 | **Volume set to** \`${player.volume}\``
+        `🔉 | **Volume diatur ke** \`${player.volume}\``
       );
     }
   },
@@ -68,7 +68,7 @@ module.exports = {
         value: "amount",
         type: 4,
         required: false,
-        description: "Enter a volume from 1-100. Default is 100.",
+        description: "Masukin volume dari 1-100. Standarnya 100.",
       },
     ],
     /**
@@ -104,16 +104,19 @@ module.exports = {
       if (!args[0].value)
         return client.sendTime(
           interaction,
-          `🔉 | Current volume \`${player.volume}\`.`
+          `🔉 | Volume sekarang \`${player.volume}\`.`
         );
       let vol = parseInt(args[0].value);
       if (!vol || vol < 1 || vol > 100)
         return client.sendTime(
           interaction,
-          `**Please choose a number between** \`1 - 100\``
+          `**Tolonglah pilih nomor antara** \`1 - 100\``
         );
       player.setVolume(vol);
-      client.sendTime(interaction, `🔉 | Volume set to \`${player.volume}\``);
+      client.sendTime(
+        interaction,
+        `🔉 | Volume diatur ke \`${player.volume}\``
+      );
     },
   },
 };

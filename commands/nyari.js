@@ -2,8 +2,8 @@ const { MessageEmbed } = require("discord.js");
 const { TrackUtils } = require("erela.js");
 
 module.exports = {
-  name: "seek",
-  description: "Seek to a position in the song",
+  name: "nyari",
+  description: "Carilah posisi dalam lagu tersebut ",
   usage: "<time s/m/h>",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
@@ -40,13 +40,13 @@ module.exports = {
     if (!player.queue.current.isSeekable)
       return client.sendTime(
         message.channel,
-        "❌ | **I'm not able to seek this song!**"
+        "❌ | **Gue gabisa nyari lagu ini, yang bener aje???**"
       );
     let SeekTo = client.ParseHumanTime(args.join(" "));
     if (!SeekTo)
       return client.sendTime(
         message.channel,
-        `**Usage - **\`${GuildDB.prefix}seek <number s/m/h>\` \n**Example - **\`${GuildDB.prefix}seek 2m 10s\``
+        `**Penggunaan - **\`${GuildDB.prefix}pencarian <number s/m/h>\` \n**Contoh - **\`${GuildDB.prefix}cari 2m 10s\``
       );
     player.seek(SeekTo * 1000);
     message.react("✅");

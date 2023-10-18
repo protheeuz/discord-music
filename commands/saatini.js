@@ -2,14 +2,14 @@ const { MessageEmbed } = require("discord.js");
 const prettyMilliseconds = require("pretty-ms");
 
 module.exports = {
-  name: "nowplaying",
-  description: "See what song is Lagi dinyanyiin",
+  name: "saatini",
+  description: "Lihat lagu yang lagi dinyanyiin",
   usage: "",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
   },
-  aliases: ["np", "nowplaying", "now playing"],
+  aliases: ["np", "nowplaying", "now playing", "saatini"],
   /**
    *
    * @param {import("../structures/DiscordMusicBot")} client
@@ -32,7 +32,7 @@ module.exports = {
       .setDescription(`[${song.title}](${song.uri})`)
       .addField("Rekwesnya si", `${song.requester}`, true)
       .addField(
-        "Duration",
+        "Duresyen",
         `${
           client.ProgressBar(player.position, player.queue.current.duration, 15)
             .Bar
@@ -69,7 +69,7 @@ module.exports = {
         .setDescription(`[${song.title}](${song.uri})`)
         .addField("Rekwesnya si", `${song.requester}`, true)
         .addField(
-          "Duration",
+          "Duresyen",
           `${
             client.ProgressBar(
               player.position,

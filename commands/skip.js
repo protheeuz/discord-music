@@ -3,7 +3,7 @@ const { TrackUtils } = require("erela.js");
 
 module.exports = {
   name: "skip",
-  description: "Skip the current song",
+  description: "Skip lagu sekarang",
   usage: "",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
@@ -82,9 +82,12 @@ module.exports = {
         skipTo !== null &&
         (isNaN(skipTo) || skipTo < 1 || skipTo > player.queue.length)
       )
-        return client.sendTime(interaction, "❌ | **Invalid number to skip!**");
+        return client.sendTime(
+          interaction,
+          "❌ | **Nomor gak valid utk di skip, lol!**"
+        );
       player.stop(skipTo);
-      client.sendTime(interaction, "**Skipped!**");
+      client.sendTime(interaction, "**Diskip!!!!**");
     },
   },
 };

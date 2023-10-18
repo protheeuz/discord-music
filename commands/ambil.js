@@ -2,8 +2,8 @@ const { MessageEmbed } = require("discord.js");
 const prettyMilliseconds = require("pretty-ms");
 
 module.exports = {
-  name: "grab",
-  description: "Saves the current song to your Direct Messages",
+  name: "ambil",
+  description: "Menyimpan lagu saat ini ke Direct Message Anda",
   usage: "",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
@@ -46,7 +46,7 @@ module.exports = {
       .send(
         new MessageEmbed()
           .setAuthor(
-            `Song saved`,
+            `Lagu disimpan`,
             client.user.displayAvatarURL({
               dynamic: true,
             })
@@ -58,15 +58,15 @@ module.exports = {
           .setColor(client.botconfig.EmbedColor)
           .setTitle(`**${player.queue.current.title}**`)
           .addField(
-            `⌛ Duration: `,
+            `⌛ Duresyen: `,
             `\`${prettyMilliseconds(player.queue.current.duration, {
               colonNotation: true,
             })}\``,
             true
           )
-          .addField(`🎵 Author: `, `\`${player.queue.current.author}\``, true)
+          .addField(`🎵 Penyanyi: `, `\`${player.queue.current.author}\``, true)
           .addField(
-            `▶ Play it:`,
+            `▶ Mainkan:`,
             `\`${
               GuildDB ? GuildDB.prefix : client.botconfig.DefaultPrefix
             }play ${player.queue.current.uri}\``
@@ -80,10 +80,10 @@ module.exports = {
           )
       )
       .catch((e) => {
-        return message.channel.send("**:x: Your DMs are disabled**");
+        return message.channel.send("**:x: DM Lo dinonaktifkan**");
       });
 
-    client.sendTime(message.channel, "✅ | **Check your DMs!**");
+    client.sendTime(message.channel, "✅ | **Check DM Lo!**");
   },
   SlashCommand: {
     /**
@@ -123,7 +123,7 @@ module.exports = {
         );
       try {
         let embed = new MessageEmbed()
-          .setAuthor(`Song saved: `, client.user.displayAvatarURL())
+          .setAuthor(`Lagu disimpan: `, client.user.displayAvatarURL())
           .setThumbnail(
             `https://img.youtube.com/vi/${player.queue.current.identifier}/mqdefault.jpg`
           )
@@ -132,20 +132,20 @@ module.exports = {
           .setTimestamp()
           .setTitle(`**${player.queue.current.title}**`)
           .addField(
-            `⌛ Duration: `,
+            `⌛ Duresyen: `,
             `\`${prettyMilliseconds(player.queue.current.duration, {
               colonNotation: true,
             })}\``,
             true
           )
-          .addField(`🎵 Author: `, `\`${player.queue.current.author}\``, true)
+          .addField(`🎵 Penyanyi: `, `\`${player.queue.current.author}\``, true)
           .addField(
-            `▶ Play it:`,
+            `▶ Mainkan:`,
             `\`${
               GuildDB ? GuildDB.prefix : client.botconfig.DefaultPrefix
             }play ${player.queue.current.uri}\``
           )
-          .addField(`🔎 Saved in:`, `<#${interaction.channel_id}>`)
+          .addField(`🔎 Disimpan kedalam:`, `<#${interaction.channel_id}>`)
           .setFooter(
             `Rekwesnya si: ${player.queue.current.requester.tag}`,
             player.queue.current.requester.displayAvatarURL({
@@ -154,10 +154,10 @@ module.exports = {
           );
         user.send(embed);
       } catch (e) {
-        return client.sendTime(interaction, "**:x: Your DMs are disabled**");
+        return client.sendTime(interaction, "**:x: DM lo mati!**");
       }
 
-      client.sendTime(interaction, "✅ | **Check your DMs!**");
+      client.sendTime(interaction, "✅ | **Check DM lo**");
     },
   },
 };

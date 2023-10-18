@@ -4,9 +4,9 @@ const _ = require("lodash");
 const prettyMilliseconds = require("pretty-ms");
 
 module.exports = {
-  name: "search",
-  description: "Shows a result of songs based on the search query",
-  usage: "[song]",
+  name: "cari",
+  description: "Tampilkan hasil lagu dari database",
+  Penggunaan: "[song]",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],
@@ -38,13 +38,13 @@ module.exports = {
     if (!SearchString)
       return client.sendTime(
         message.channel,
-        `**Usage - **\`${GuildDB.prefix}search [query]\``
+        `**Penggunaan - **\`${GuildDB.prefix}pencarian [query]\``
       );
     let CheckNode = client.Manager.nodes.get(client.botconfig.Lavalink.id);
     if (!CheckNode || !CheckNode.connected) {
       return client.sendTime(
         message.channel,
-        "❌ | **Lavalink node not connected**"
+        "❌ | **Server lagi gak konek nih**"
       );
     }
     const player = client.Manager.create({
@@ -61,7 +61,7 @@ module.exports = {
     if (Searched.loadType == "NO_MATCHES")
       return client.sendTime(
         message.channel,
-        "No matches found for " + SearchString
+        "Gada hasil dari pencarian " + SearchString
       );
     else {
       Searched.tracks = Searched.tracks.map((s, i) => {
@@ -74,14 +74,14 @@ module.exports = {
           (s) =>
             `\`${s.index + 1}.\` [${s.title}](${
               s.uri
-            }) \nDuration: \`${prettyMilliseconds(s.duration, {
+            }) \nDuresyen: \`${prettyMilliseconds(s.duration, {
               colonNotation: true,
             })}\``
         );
 
         let em = new MessageEmbed()
           .setAuthor(
-            "Search Results of " + SearchString,
+            "Hasil pencarian dari.. " + SearchString,
             client.botconfig.IconURL
           )
           .setColor(client.botconfig.EmbedColor)
@@ -96,7 +96,7 @@ module.exports = {
       let w = (a) => new Promise((r) => setInterval(r, a));
       await w(500); //waits 500ms cuz needed to wait for the above song search embed to send ._.
       let msg = await message.channel.send(
-        "**Type the number of the song you want to play! Expires in `30 seconds`.**"
+        "**Ketik nomor lagu yang ingin Lo mainkan! Kedaluwarsa dalam `30 detik`.**"
       );
 
       let er = false;
@@ -109,7 +109,7 @@ module.exports = {
         .catch(() => {
           er = true;
           msg.edit(
-            "**You took too long to respond. Run the command again if you want to play something!**"
+            "**Lama banget balesnya. Jalankan perintah itu lagi jika Lo ingin memainkan sesuatu!**"
           );
         });
       if (er) return;
@@ -119,13 +119,13 @@ module.exports = {
       if (!parseInt(SongIDmsg.content))
         return client.sendTime(
           message.channel,
-          "Please send correct song ID number"
+          "Silakan kirimkan nomor ID lagu yang benar"
         );
       let Song = Searched.tracks[parseInt(SongIDmsg.content) - 1];
       if (!Song)
         return client.sendTime(
           message.channel,
-          "No song found for the given ID"
+          "Gaada lagu yang ditemukan untuk ID yang diberikan"
         );
       player.queue.add(Song);
       if (!player.playing && !player.paused && !player.queue.size)
@@ -140,7 +140,7 @@ module.exports = {
       SongAddedEmbed.setDescription(`[${Song.title}](${Song.uri})`);
       SongAddedEmbed.addField("Author", `${Song.author}`, true);
       SongAddedEmbed.addField(
-        "Duration",
+        "Duresyen",
         `\`${prettyMilliseconds(player.queue.current.duration, {
           colonNotation: true,
         })}\``,
@@ -148,7 +148,7 @@ module.exports = {
       );
       if (player.queue.totalSize > 1)
         SongAddedEmbed.addField(
-          "Position in queue",
+          "Posisi di antrian",
           `${player.queue.size - 0}`,
           true
         );
@@ -163,7 +163,7 @@ module.exports = {
         value: "song",
         type: 3,
         required: true,
-        description: "Enter the song name or url you want to search",
+        description: "Masukin nama lagu ato URL yang mw lo cari",
       },
     ],
     /**
@@ -195,7 +195,7 @@ module.exports = {
       if (!CheckNode || !CheckNode.connected) {
         return client.sendTime(
           interaction,
-          "❌ | **Lavalink node not connected**"
+          "❌ | **Server gangguan nih brooo**"
         );
       }
       let player = client.Manager.create({
@@ -293,7 +293,7 @@ module.exports = {
               player.play();
             return client.sendTime(
               interaction,
-              `**Playlist Ditambahkan ke antrian**: \n**${res.playlist.name}** \nEnqueued: **${res.playlistInfo.length} songs**`
+              `**Playlist Ditambahkan ke antrian**: \n**${res.playlist.name}** \nEntri: **${res.playlistInfo.length} lagu**`
             );
           case "SEARCH_RESULT":
             let max = 10,
@@ -317,11 +317,11 @@ module.exports = {
 
             const resultss = new MessageEmbed()
               .setDescription(
-                `${results}\n\n\t**Type the number of the song you want to play!**\n`
+                `${results}\n\n\t**Ketik nomor lagu yang ingin Lo mainkan!**\n`
               )
               .setColor(client.botconfig.EmbedColor)
               .setAuthor(
-                `Search results for ${search}`,
+                `Hasil pencarian untuk... ${search}`,
                 client.botconfig.IconURL
               );
             interaction.send(resultss);
@@ -334,7 +334,7 @@ module.exports = {
             } catch (e) {
               if (!player.queue.current) player.destroy();
               return awaitchannel.send(
-                "❌ | **You didn't provide a selection**"
+                "❌ | **Lo gak ngasih pilihan anjir???**"
               );
             }
 
@@ -342,13 +342,13 @@ module.exports = {
 
             if (first.toLowerCase() === "cancel") {
               if (!player.queue.current) player.destroy();
-              return awaitchannel.send("Cancelled search.");
+              return awaitchannel.send("Pencarian dibatalin.");
             }
 
             const index = Number(first) - 1;
             if (index < 0 || index > max - 1)
               return awaitchannel.send(
-                `The number you provided was greater or less than the search total. Usage - \`(1-${max})\``
+                `Jumlah yang Lo berikan lebih besar atau lebih kecil dari total. Penggunaan - \`(1-${max})\``
               );
             const track = res.tracks[index];
             player.queue.add(track);
@@ -366,7 +366,7 @@ module.exports = {
               SongAddedEmbed.setDescription(`[${track.title}](${track.uri})`);
               SongAddedEmbed.addField("Author", track.author, true);
               SongAddedEmbed.addField(
-                "Duration",
+                "Duresyen",
                 `\`${prettyMilliseconds(track.duration, {
                   colonNotation: true,
                 })}\``,
@@ -374,7 +374,7 @@ module.exports = {
               );
               if (player.queue.totalSize > 1)
                 SongAddedEmbed.addField(
-                  "Position in queue",
+                  "Posisi di antrian",
                   `${player.queue.size - 0}`,
                   true
                 );
