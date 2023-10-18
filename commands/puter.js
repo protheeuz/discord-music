@@ -455,7 +455,7 @@ module.exports = {
               );
               if (player.queue.totalSize > 1)
                 SongAddedEmbed.addField(
-                  "Posisi dalam antria",
+                  "Posisi dalam antrian",
                   `${player.queue.size - 0}`,
                   true
                 );
