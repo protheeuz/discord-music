@@ -14,7 +14,7 @@ module.exports = {
   "24/7": false,
   CookieSecret: "Iqbal is cute",
   IconURL:
-    "https://raw.githubusercontent.com/SudhanPlayz/Discord-MusicBot/master/assets/logo.gif",
+    "https://raw.githubusercontent.com/protheeuz/discord-music/main/assets/logo.gif",
   EmbedColor: "RANDOM",
   Permissions: 2205281600,
   Website: process.env.Website || "http://localhost",
