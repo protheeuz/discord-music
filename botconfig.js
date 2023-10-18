@@ -28,9 +28,9 @@ module.exports = {
   //Lavalink
   Lavalink: {
     id: "Main",
-    host: "lava1.horizxon.tech",
+    host: "lavalink.justapie.net",
     port: 443,
-    pass: "horizxon.tech",
+    pass: "pieajust12@XyZ",
     secure: true,
   },
 

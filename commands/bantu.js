@@ -127,7 +127,7 @@ module.exports = {
     client.botconfig.SupportServer
   }) | [GitHub](https://github.com/protheeuz/discord-music) | [Dashboard](${
         client.botconfig.Website
-      }) | By [SudhanPlayz](https://github.com/protheeuz/)`);
+      }) | By [Protheeuz](https://github.com/protheeuz/)`);
       if (!args) return interaction.send(Embed);
       else {
         let cmd =
