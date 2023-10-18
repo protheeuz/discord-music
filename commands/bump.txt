@@ -2,8 +2,8 @@ const { MessageEmbed } = require("discord.js");
 const { TrackUtils } = require("erela.js");
 
 module.exports = {
-  name: "bump",
-  description: "Moves a track to the front of the queue.",
+  name: "tabrak",
+  description: "Memindahkan trek ke depan antrian.",
   usage: "",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
@@ -39,7 +39,7 @@ module.exports = {
     player.queue.unshift(track);
     client.sendTime(
       message.channel,
-      "✅ | **" + track.title + "** has been moved to the front of the queue."
+      "✅ | **" + track.title + "** telah dipindahkan ke antrian paling depan."
     );
   },
 
@@ -50,7 +50,7 @@ module.exports = {
         value: "track",
         type: 4,
         required: true,
-        description: "Moves selected track to the front of the queue.",
+        description: "Memindahkan trek ke depan antrian.",
       },
     ],
     /**
@@ -71,12 +71,12 @@ module.exports = {
           "❌ | **Gaada yang bisa diputer sekarang..**"
         );
       if (!args[0].value)
-        return client.sendTime(interaction, "❌ | **Invalid track number.**");
+        return client.sendTime(interaction, "❌ | **Nomor trek tidak valid.**");
 
       // Check if (args[0] - 1) is a valid index
       let trackNum = parseInt(args[0].value - 1);
       if (trackNum < 1 || trackNum > player.queue.length - 1) {
-        return client.sendTime(interaction, "❌ | **Invalid track number.**");
+        return client.sendTime(interaction, "❌ | **Nomor trek tidak valid.**");
       }
 
       // Remove from and shift array
@@ -87,7 +87,7 @@ module.exports = {
         interaction,
         "✅ | **" +
           player.queue[0].title +
-          "** has been moved to the front of the queue."
+          "** telah dipindahkan ke antrian paling depan."
       );
     },
   },

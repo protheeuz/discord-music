@@ -4,7 +4,7 @@ const { TrackUtils } = require("erela.js");
 module.exports = {
   name: "nyari",
   description: "Carilah posisi dalam lagu tersebut ",
-  usage: "<time s/m/h>",
+  usage: "<waktu d/m/j>",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],

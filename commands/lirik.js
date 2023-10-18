@@ -6,7 +6,7 @@ const _ = require("lodash");
 module.exports = {
   name: "lirik",
   description: "Tampilkan lirik dari lagu yang dicari",
-  usage: "[Song Name]",
+  usage: "[Judul Lagu]",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],

@@ -4,7 +4,7 @@ const { TrackUtils } = require("erela.js");
 module.exports = {
   name: "pindah",
   description: `Pindah lagu dari antrian`,
-  usage: "[number]",
+  usage: "[nomor]",
   permissions: {
     channel: ["VIEW_CHANNEL", "SEND_MESSAGES", "EMBED_LINKS"],
     member: [],

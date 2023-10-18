@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 const { TrackUtils } = require("erela.js");
 
 module.exports = {
-  name: "bentara",
+  name: "bentaran",
   description: "Pause music bentaran",
   usage: "",
   permissions: {
