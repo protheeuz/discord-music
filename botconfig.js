@@ -21,7 +21,7 @@ module.exports = {
 
   Presence: {
     status: "online",
-    name: "Music",
+    name: "Dangdut",
     type: "LISTENING",
   },
 
